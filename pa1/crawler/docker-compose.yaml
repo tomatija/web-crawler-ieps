@@ -14,5 +14,17 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./crawler_db/crawldb.sql:/docker-entrypoint-initdb.d/init.sql
 
+  server:
+    build: ./crawler_server
+    container_name: crawler_server
+    environment:
+      DB_HOST: db
+      POSTGRES_DB: crawler_db
+      POSTGRES_USER: crawler_user
+      POSTGRES_PASSWORD: crawler_password
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
 volumes:
   postgres_data:

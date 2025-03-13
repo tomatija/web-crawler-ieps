@@ -10,6 +10,13 @@ CREATE TABLE crawldb.page_type (
 	CONSTRAINT pk_page_type_code PRIMARY KEY ( code )
  );
 
+
+CREATE TABLE crawldb.crawlers (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(50) UNIQUE NOT NULL,
+	password_hash VARCHAR(128) NOT NULL
+);
+
 CREATE TABLE crawldb.site ( 
 	id                   serial  NOT NULL,
 	"domain"             varchar(500)  ,

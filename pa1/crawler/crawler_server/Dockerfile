@@ -9,4 +9,8 @@ COPY src/ /app
 
 ENV FLASK_APP=app.py
 
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+# Create a startup script
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+ENTRYPOINT ["/app/start.sh"]
